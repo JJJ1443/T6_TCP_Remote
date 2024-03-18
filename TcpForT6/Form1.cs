@@ -37,7 +37,6 @@ namespace TcpForT6
             int Port = int.Parse(PortTB.Text);
             gClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             IAsyncResult waiter = gClient.BeginConnect(new IPEndPoint(IPAddress.Parse(IP), Port), null, null);
-            //IPEndPoint ep = new IPEndPoint(IPAddress.Parse(IP), Port);
             bool success = waiter.AsyncWaitHandle.WaitOne(1000, true);
             try
             {
