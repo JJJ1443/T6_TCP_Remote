@@ -549,5 +549,35 @@ namespace TcpForT6
                 DisableControl();
             }
         }
+
+        private void GetVariableBTN_Click(object sender, EventArgs e) //변수값 가져오는 부분.
+        {
+            try
+            {
+                gCMD = $"$GetVariable,{GetVariableTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
+        }
+
+        private void SetVariableBTN_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                gCMD = $"$SetVariable,{SetVariableTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
+        }
     }
 }
