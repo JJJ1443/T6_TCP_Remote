@@ -19,22 +19,56 @@ namespace TcpForT6
         public Form1()
         {
             InitializeComponent();
-            DisableControl();
+            if (InvokeRequired)
+            {
+                this.Invoke(new MethodInvoker(delegate ()
+                {
+                    DisableControl();
+                }));
+            }
+            else
+            {
+                DisableControl();
+            }
         }
-
         private void ConnectBTN_Click(object sender, EventArgs e) //로봇과 연결 하는 부분
         {
             string IP = IPTB.Text;
             int Port = int.Parse(PortTB.Text);
             gClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPEndPoint ep = new IPEndPoint(IPAddress.Parse(IP), Port);
-            gClient.Connect(ep);
-            Task task = Receive_Data();
-            if (gClient.Connected)
+            IAsyncResult waiter = gClient.BeginConnect(new IPEndPoint(IPAddress.Parse(IP), Port), null, null);
+            //IPEndPoint ep = new IPEndPoint(IPAddress.Parse(IP), Port);
+            bool success = waiter.AsyncWaitHandle.WaitOne(1000, true);
+            try
             {
-                MessageBox.Show("연결 완료");
-                EnabledControl();
+                if (success)
+                {
+                    MessageBox.Show("연결 완료");
+                    Task task = Receive_Data();
+                    if (InvokeRequired)
+                    {
+                        this.Invoke(new MethodInvoker(delegate ()
+                        {
+                            EnabledControl();
+                        }));
+                    }
+                    else
+                    {
+                        EnabledControl();
+                    }
+                }
+                else
+                {
+                    gClient.Close();
+                    MessageBox.Show("연결 실패");
+                }
             }
+            catch(Exception ex)
+            {
+                gClient.Close();
+                MessageBox.Show(ex.Message);
+            }
+            
         }
         private void DisableControl() // 버튼 비활성화
         {
