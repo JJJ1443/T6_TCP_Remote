@@ -770,7 +770,6 @@
             this.IPTB.Name = "IPTB";
             this.IPTB.Size = new System.Drawing.Size(100, 21);
             this.IPTB.TabIndex = 1;
-            this.IPTB.Text = "127.0.0.1";
             // 
             // IPLBL
             // 
