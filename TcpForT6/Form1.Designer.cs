@@ -35,8 +35,8 @@
             this.MotorOffTB = new System.Windows.Forms.TextBox();
             this.MotorOnTB = new System.Windows.Forms.TextBox();
             this.ResetAlmTB = new System.Windows.Forms.TextBox();
-            this.textBox18 = new System.Windows.Forms.TextBox();
-            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.SetVariableTB = new System.Windows.Forms.TextBox();
+            this.GetVariableTB = new System.Windows.Forms.TextBox();
             this.SetMemIOWordTB = new System.Windows.Forms.TextBox();
             this.GetMemIOWordTB = new System.Windows.Forms.TextBox();
             this.SetMemIOByteTB = new System.Windows.Forms.TextBox();
@@ -54,8 +54,8 @@
             this.SetMemIOByteBTN = new System.Windows.Forms.Button();
             this.GetMemIOWordBTN = new System.Windows.Forms.Button();
             this.SetMemIOWordBTN = new System.Windows.Forms.Button();
-            this.button23 = new System.Windows.Forms.Button();
-            this.button24 = new System.Windows.Forms.Button();
+            this.GetVariableBTN = new System.Windows.Forms.Button();
+            this.SetVariableBTN = new System.Windows.Forms.Button();
             this.GetStatusBTN = new System.Windows.Forms.Button();
             this.AbortBTN = new System.Windows.Forms.Button();
             this.GetAlmBTN = new System.Windows.Forms.Button();
@@ -136,8 +136,8 @@
             this.BTNPanel.Controls.Add(this.MotorOffTB);
             this.BTNPanel.Controls.Add(this.MotorOnTB);
             this.BTNPanel.Controls.Add(this.ResetAlmTB);
-            this.BTNPanel.Controls.Add(this.textBox18);
-            this.BTNPanel.Controls.Add(this.textBox19);
+            this.BTNPanel.Controls.Add(this.SetVariableTB);
+            this.BTNPanel.Controls.Add(this.GetVariableTB);
             this.BTNPanel.Controls.Add(this.SetMemIOWordTB);
             this.BTNPanel.Controls.Add(this.GetMemIOWordTB);
             this.BTNPanel.Controls.Add(this.SetMemIOByteTB);
@@ -188,19 +188,19 @@
             this.ResetAlmTB.Size = new System.Drawing.Size(133, 21);
             this.ResetAlmTB.TabIndex = 36;
             // 
-            // textBox18
+            // SetVariableTB
             // 
-            this.textBox18.Location = new System.Drawing.Point(297, 267);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(133, 21);
-            this.textBox18.TabIndex = 34;
+            this.SetVariableTB.Location = new System.Drawing.Point(297, 267);
+            this.SetVariableTB.Name = "SetVariableTB";
+            this.SetVariableTB.Size = new System.Drawing.Size(133, 21);
+            this.SetVariableTB.TabIndex = 34;
             // 
-            // textBox19
+            // GetVariableTB
             // 
-            this.textBox19.Location = new System.Drawing.Point(297, 239);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(133, 21);
-            this.textBox19.TabIndex = 33;
+            this.GetVariableTB.Location = new System.Drawing.Point(297, 239);
+            this.GetVariableTB.Name = "GetVariableTB";
+            this.GetVariableTB.Size = new System.Drawing.Size(133, 21);
+            this.GetVariableTB.TabIndex = 33;
             // 
             // SetMemIOWordTB
             // 
@@ -268,8 +268,8 @@
             this.flowLayoutPanel2.Controls.Add(this.SetMemIOByteBTN);
             this.flowLayoutPanel2.Controls.Add(this.GetMemIOWordBTN);
             this.flowLayoutPanel2.Controls.Add(this.SetMemIOWordBTN);
-            this.flowLayoutPanel2.Controls.Add(this.button23);
-            this.flowLayoutPanel2.Controls.Add(this.button24);
+            this.flowLayoutPanel2.Controls.Add(this.GetVariableBTN);
+            this.flowLayoutPanel2.Controls.Add(this.SetVariableBTN);
             this.flowLayoutPanel2.Controls.Add(this.GetStatusBTN);
             this.flowLayoutPanel2.Controls.Add(this.AbortBTN);
             this.flowLayoutPanel2.Controls.Add(this.GetAlmBTN);
@@ -360,23 +360,25 @@
             this.SetMemIOWordBTN.UseVisualStyleBackColor = true;
             this.SetMemIOWordBTN.Click += new System.EventHandler(this.SetMemIOWordBTN_Click);
             // 
-            // button23
+            // GetVariableBTN
             // 
-            this.button23.Location = new System.Drawing.Point(3, 235);
-            this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(117, 23);
-            this.button23.TabIndex = 21;
-            this.button23.Text = "변수 상태";
-            this.button23.UseVisualStyleBackColor = true;
+            this.GetVariableBTN.Location = new System.Drawing.Point(3, 235);
+            this.GetVariableBTN.Name = "GetVariableBTN";
+            this.GetVariableBTN.Size = new System.Drawing.Size(117, 23);
+            this.GetVariableBTN.TabIndex = 21;
+            this.GetVariableBTN.Text = "변수 상태";
+            this.GetVariableBTN.UseVisualStyleBackColor = true;
+            this.GetVariableBTN.Click += new System.EventHandler(this.GetVariableBTN_Click);
             // 
-            // button24
+            // SetVariableBTN
             // 
-            this.button24.Location = new System.Drawing.Point(3, 264);
-            this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(117, 23);
-            this.button24.TabIndex = 22;
-            this.button24.Text = "변수 설정";
-            this.button24.UseVisualStyleBackColor = true;
+            this.SetVariableBTN.Location = new System.Drawing.Point(3, 264);
+            this.SetVariableBTN.Name = "SetVariableBTN";
+            this.SetVariableBTN.Size = new System.Drawing.Size(117, 23);
+            this.SetVariableBTN.TabIndex = 22;
+            this.SetVariableBTN.Text = "변수 설정";
+            this.SetVariableBTN.UseVisualStyleBackColor = true;
+            this.SetVariableBTN.Click += new System.EventHandler(this.SetVariableBTN_Click);
             // 
             // GetStatusBTN
             // 
@@ -753,7 +755,6 @@
             this.PortTB.Name = "PortTB";
             this.PortTB.Size = new System.Drawing.Size(100, 21);
             this.PortTB.TabIndex = 3;
-            this.PortTB.Text = "5000";
             // 
             // PortLBL
             // 
@@ -848,8 +849,8 @@
         private System.Windows.Forms.Button SetMemIOByteBTN;
         private System.Windows.Forms.Button GetMemIOWordBTN;
         private System.Windows.Forms.Button SetMemIOWordBTN;
-        private System.Windows.Forms.Button button23;
-        private System.Windows.Forms.Button button24;
+        private System.Windows.Forms.Button GetVariableBTN;
+        private System.Windows.Forms.Button SetVariableBTN;
         private System.Windows.Forms.Button GetStatusBTN;
         private System.Windows.Forms.Button AbortBTN;
         private System.Windows.Forms.Button GetAlmBTN;
@@ -859,8 +860,8 @@
         private System.Windows.Forms.Button ExecuteBTN;
         private System.Windows.Forms.TextBox ExecuteTB;
         private System.Windows.Forms.TextBox ResetAlmTB;
-        private System.Windows.Forms.TextBox textBox18;
-        private System.Windows.Forms.TextBox textBox19;
+        private System.Windows.Forms.TextBox SetVariableTB;
+        private System.Windows.Forms.TextBox GetVariableTB;
         private System.Windows.Forms.TextBox SetMemIOWordTB;
         private System.Windows.Forms.TextBox GetMemIOWordTB;
         private System.Windows.Forms.TextBox SetMemIOByteTB;

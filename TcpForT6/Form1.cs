@@ -19,43 +19,69 @@ namespace TcpForT6
         public Form1()
         {
             InitializeComponent();
-            DisableControl();
+            if (InvokeRequired)
+            {
+                this.Invoke(new MethodInvoker(delegate ()
+                {
+                    DisableControl();
+                }));
+            }
+            else
+            {
+                DisableControl();
+            }
         }
-
-        private void ConnectBTN_Click(object sender, EventArgs e)
+        private void ConnectBTN_Click(object sender, EventArgs e) //로봇과 연결 하는 부분
         {
             string IP = IPTB.Text;
             int Port = int.Parse(PortTB.Text);
             gClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPEndPoint ep = new IPEndPoint(IPAddress.Parse(IP), Port);
-            gClient.Connect(ep);
-            Task task = Receive_Data();
-            if (gClient.Connected)
+            IAsyncResult waiter = gClient.BeginConnect(new IPEndPoint(IPAddress.Parse(IP), Port), null, null);
+            bool success = waiter.AsyncWaitHandle.WaitOne(1000, true);
+            try
             {
-                MessageBox.Show("연결 완료");
-                EnabledControl();
+                if (success)
+                {
+                    MessageBox.Show("연결 완료");
+                    Task task = Receive_Data();
+                    if (InvokeRequired)
+                    {
+                        this.Invoke(new MethodInvoker(delegate ()
+                        {
+                            EnabledControl();
+                        }));
+                    }
+                    else
+                    {
+                        EnabledControl();
+                    }
+                }
+                else
+                {
+                    gClient.Close();
+                    MessageBox.Show("연결 실패");
+                }
             }
+            catch(Exception ex)
+            {
+                gClient.Close();
+                MessageBox.Show(ex.Message);
+            }
+            
         }
-        private void DisableControl()
+        private void DisableControl() // 버튼 비활성화
         {
             LoginPanel.Enabled = false;
             CommandPanel.Enabled = false;
             BTNPanel.Enabled = false;
         }
-        private void EnabledControl()
+        private void EnabledControl() //버튼 활성화
         {
             LoginPanel.Enabled = true;
             CommandPanel.Enabled = true;
             BTNPanel.Enabled = true;
         }
-        private void LoginBTN_Click(object sender, EventArgs e)// 로그인 커맨드
-        {
-            gCMD = $"$Login,{PasswordTB.Text}\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
-        }
-
-        private async Task Receive_Data()
+        private async Task Receive_Data() //로봇이 송신한 결과를 가져와서 띄워주는 부분.
         {
             while (true)
             {
@@ -74,208 +100,484 @@ namespace TcpForT6
                 await Task.Delay(100);
             }
         }
-
+        private void LoginBTN_Click(object sender, EventArgs e)// 로그인 커맨드
+        {
+            try
+            {
+                gCMD = $"$Login,{PasswordTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
+        }
         private void SendBTN_Click(object sender, EventArgs e) //커맨드 전송
         {
-            gCMD = CMDTB.Text;
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = CMDTB.Text;
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
+
         }
 
         private void LogoutBTN_Click(object sender, EventArgs e) //로그아웃 커맨드
         {
-            gCMD = @"$LogOut\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = @"$LogOut\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void ExecuteBTN_Click(object sender, EventArgs e) //스펠 언어 실행 커맨드
         {
-            gCMD = $"$Execute,{ExecuteTB.Text}\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$Execute,{ExecuteTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void StartBTN_Click(object sender, EventArgs e) //함수 시작 커맨드
         {
-            gCMD = $"$Start,{StartTB.Text}\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$Start,{StartTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void StopBTN_Click(object sender, EventArgs e) //멈춤 커맨드
         {
-            gCMD = $"$Stop\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$Stop\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void PauseBTN_Click(object sender, EventArgs e) //일시정지 커맨드
         {
-            gCMD = $"$Pause\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$Pause\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void ContinueBTN_Click(object sender, EventArgs e) //재개 커맨드
         {
-            gCMD = $"$Continue\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$Continue\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void ResetBTN_Click(object sender, EventArgs e) //리셋 커맨드
         {
-            gCMD = $"$Reset\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$Reset\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void MotorOnBTN_Click(object sender, EventArgs e) //모터 켜기 커맨드
         {
-            gCMD = $"$SetMotorsOn,{MotorOnTB.Text}\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$SetMotorsOn,{MotorOnTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void MotorOffBTN_Click(object sender, EventArgs e) //모터 끄기 커맨드
         {
-            gCMD = $"$SetMotorsOff,{MotorOffTB.Text}\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$SetMotorsOff,{MotorOffTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void GetCurRobotBTN_Click(object sender, EventArgs e) //선택된 로봇 번호 커맨드
         {
-            gCMD = $"$GetCurRobot\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$GetCurRobot\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void SetCurRobotBTN_Click(object sender, EventArgs e) //로봇 선택 커맨드
         {
-            gCMD = $"$SetCurRobot,{SetCurRobotTB.Text}\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$SetCurRobot,{SetCurRobotTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void HomeBTN_Click(object sender, EventArgs e) //홈 커맨드
         {
-            gCMD = $"$Home,{HomeTB.Text}\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$Home,{HomeTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void GetBitBTN_Click(object sender, EventArgs e) //비트 값 가져오는 커맨드
         {
-            gCMD = $"$GetIO,{GetBitTB.Text}\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$GetIO,{GetBitTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void SetIOBTN_Click(object sender, EventArgs e) //비트 값 설정하는 커맨드
         {
-            gCMD = $"$SetIO,{SetIOTB.Text}\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$SetIO,{SetIOTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void GetIOByteBTN_Click(object sender, EventArgs e) //바이트 값 가져오는 커맨드
         {
-            gCMD = $"$GetIOByte,{GetIOByteTB.Text}\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$GetIOByte,{GetIOByteTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void SetIOByteBTN_Click(object sender, EventArgs e) //바이트 값 설정하는 커맨드
         {
-            gCMD = $"$SetIOByte,{SetIOByteTB.Text}\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$SetIOByte,{SetIOByteTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void GetIOWordBTN_Click(object sender, EventArgs e) //워드 값 가져오는 커맨드
         {
-            gCMD = $"$GetIOWord,{GetIOWordTB.Text}\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$GetIOWord,{GetIOWordTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void SetIOWordBTN_Click(object sender, EventArgs e) //워드 값 설정하는 커맨드
         {
-            gCMD = $"$SetIOWord,{SetIOWordTB.Text}\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$SetIOWord,{SetIOWordTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void GetMemIOBTN_Click(object sender, EventArgs e) //메모리 비트 값 가져오는 커맨드
         {
-            gCMD = $"$GetMemIO,{GetMemIOTB.Text}\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$GetMemIO,{GetMemIOTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void SetMemIOBTN_Click(object sender, EventArgs e) //메모리 비트 값 설정하는 커맨드
         {
-            gCMD = $"$SetMemIO,{SetMemIOTB.Text}\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$SetMemIO,{SetMemIOTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void GetMemIOByteBTN_Click(object sender, EventArgs e) //메모리 바이트 값 가져오는 커맨드
         {
-            gCMD = $"$GetMemIOByte,{GetMemIOByteTB.Text}\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$GetMemIOByte,{GetMemIOByteTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void SetMemIOByteBTN_Click(object sender, EventArgs e) //메모리 바이트 값 설정하는 커맨드
         {
-            gCMD = $"$SetMemIOByte,{SetMemIOByteTB.Text}\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$SetMemIOByte,{SetMemIOByteTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void GetMemIOWordBTN_Click(object sender, EventArgs e) //메모리 워드 값 가져오는 커맨드
         {
-            gCMD = $"$GetMemIOWord,{GetMemIOWordTB.Text}\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$GetMemIOWord,{GetMemIOWordTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void SetMemIOWordBTN_Click(object sender, EventArgs e) //메모리 워드 값 설정하는 커맨드
         {
-            gCMD = $"$SetMemIOWord,{SetMemIOWordTB.Text}\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$SetMemIOWord,{SetMemIOWordTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void GetStatusBTN_Click(object sender, EventArgs e) //로봇 상태 가져오는 커맨드
         {
-            gCMD = $"$GetStatus\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$GetStatus\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void AbortBTN_Click(object sender, EventArgs e) //주지 커맨드
         {
-            gCMD = $"$Abort\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$Abort\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void GetAlmBTN_Click(object sender, EventArgs e) //알람 가져오는 커맨드
         {
-            gCMD = $"$GetAlm\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$GetAlm\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
 
         private void ResetAlmBTN_Click(object sender, EventArgs e) //알람 리셋 하는 커맨드.
         {
-            gCMD = $"$ResetAlm,{ResetAlmTB.Text}\\n";
-            byte[] Buffer = Encoding.Default.GetBytes(gCMD);
-            gClient.Send(Buffer, SocketFlags.None);
+            try
+            {
+                gCMD = $"$ResetAlm,{ResetAlmTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
+        }
+
+        private void GetVariableBTN_Click(object sender, EventArgs e) //변수값 가져오는 부분.
+        {
+            try
+            {
+                gCMD = $"$GetVariable,{GetVariableTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
+        }
+
+        private void SetVariableBTN_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                gCMD = $"$SetVariable,{SetVariableTB.Text}\\n";
+                byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
         }
     }
 }
