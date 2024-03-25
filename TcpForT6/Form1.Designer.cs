@@ -98,12 +98,24 @@
             this.PortLBL = new System.Windows.Forms.Label();
             this.IPTB = new System.Windows.Forms.TextBox();
             this.IPLBL = new System.Windows.Forms.Label();
+            this.XYZUpanel = new System.Windows.Forms.Panel();
+            this.Xlbl = new System.Windows.Forms.Label();
+            this.Xtb = new System.Windows.Forms.TextBox();
+            this.Ytb = new System.Windows.Forms.TextBox();
+            this.Ylbl = new System.Windows.Forms.Label();
+            this.Ztb = new System.Windows.Forms.TextBox();
+            this.Zlbl = new System.Windows.Forms.Label();
+            this.Utb = new System.Windows.Forms.TextBox();
+            this.Ulbl = new System.Windows.Forms.Label();
+            this.XYZUChangebtn = new System.Windows.Forms.Button();
+            this.XYZUGetbtn = new System.Windows.Forms.Button();
             this.WarpPanel.SuspendLayout();
             this.BTNPanel.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.CommandPanel.SuspendLayout();
             this.LoginPanel.SuspendLayout();
+            this.XYZUpanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitter1
@@ -116,6 +128,7 @@
             // 
             // WarpPanel
             // 
+            this.WarpPanel.Controls.Add(this.XYZUpanel);
             this.WarpPanel.Controls.Add(this.BTNPanel);
             this.WarpPanel.Controls.Add(this.CommandPanel);
             this.WarpPanel.Controls.Add(this.LoginPanel);
@@ -781,6 +794,108 @@
             this.IPLBL.TabIndex = 0;
             this.IPLBL.Text = "IP";
             // 
+            // XYZUpanel
+            // 
+            this.XYZUpanel.Controls.Add(this.XYZUGetbtn);
+            this.XYZUpanel.Controls.Add(this.XYZUChangebtn);
+            this.XYZUpanel.Controls.Add(this.Utb);
+            this.XYZUpanel.Controls.Add(this.Ulbl);
+            this.XYZUpanel.Controls.Add(this.Ztb);
+            this.XYZUpanel.Controls.Add(this.Zlbl);
+            this.XYZUpanel.Controls.Add(this.Ytb);
+            this.XYZUpanel.Controls.Add(this.Ylbl);
+            this.XYZUpanel.Controls.Add(this.Xtb);
+            this.XYZUpanel.Controls.Add(this.Xlbl);
+            this.XYZUpanel.Enabled = false;
+            this.XYZUpanel.Location = new System.Drawing.Point(3, 95);
+            this.XYZUpanel.Name = "XYZUpanel";
+            this.XYZUpanel.Size = new System.Drawing.Size(373, 133);
+            this.XYZUpanel.TabIndex = 44;
+            // 
+            // Xlbl
+            // 
+            this.Xlbl.AutoSize = true;
+            this.Xlbl.Location = new System.Drawing.Point(6, 9);
+            this.Xlbl.Name = "Xlbl";
+            this.Xlbl.Size = new System.Drawing.Size(13, 12);
+            this.Xlbl.TabIndex = 0;
+            this.Xlbl.Text = "X";
+            // 
+            // Xtb
+            // 
+            this.Xtb.Location = new System.Drawing.Point(25, 6);
+            this.Xtb.Name = "Xtb";
+            this.Xtb.Size = new System.Drawing.Size(133, 21);
+            this.Xtb.TabIndex = 33;
+            // 
+            // Ytb
+            // 
+            this.Ytb.Location = new System.Drawing.Point(25, 33);
+            this.Ytb.Name = "Ytb";
+            this.Ytb.Size = new System.Drawing.Size(133, 21);
+            this.Ytb.TabIndex = 35;
+            // 
+            // Ylbl
+            // 
+            this.Ylbl.AutoSize = true;
+            this.Ylbl.Location = new System.Drawing.Point(6, 36);
+            this.Ylbl.Name = "Ylbl";
+            this.Ylbl.Size = new System.Drawing.Size(13, 12);
+            this.Ylbl.TabIndex = 34;
+            this.Ylbl.Text = "Y";
+            // 
+            // Ztb
+            // 
+            this.Ztb.Location = new System.Drawing.Point(25, 58);
+            this.Ztb.Name = "Ztb";
+            this.Ztb.Size = new System.Drawing.Size(133, 21);
+            this.Ztb.TabIndex = 37;
+            // 
+            // Zlbl
+            // 
+            this.Zlbl.AutoSize = true;
+            this.Zlbl.Location = new System.Drawing.Point(6, 65);
+            this.Zlbl.Name = "Zlbl";
+            this.Zlbl.Size = new System.Drawing.Size(13, 12);
+            this.Zlbl.TabIndex = 36;
+            this.Zlbl.Text = "Z";
+            // 
+            // Utb
+            // 
+            this.Utb.Location = new System.Drawing.Point(25, 85);
+            this.Utb.Name = "Utb";
+            this.Utb.Size = new System.Drawing.Size(133, 21);
+            this.Utb.TabIndex = 39;
+            // 
+            // Ulbl
+            // 
+            this.Ulbl.AutoSize = true;
+            this.Ulbl.Location = new System.Drawing.Point(7, 94);
+            this.Ulbl.Name = "Ulbl";
+            this.Ulbl.Size = new System.Drawing.Size(13, 12);
+            this.Ulbl.TabIndex = 38;
+            this.Ulbl.Text = "U";
+            // 
+            // XYZUChangebtn
+            // 
+            this.XYZUChangebtn.Location = new System.Drawing.Point(259, 101);
+            this.XYZUChangebtn.Name = "XYZUChangebtn";
+            this.XYZUChangebtn.Size = new System.Drawing.Size(107, 23);
+            this.XYZUChangebtn.TabIndex = 40;
+            this.XYZUChangebtn.Text = "변수값 변경";
+            this.XYZUChangebtn.UseVisualStyleBackColor = true;
+            this.XYZUChangebtn.Click += new System.EventHandler(this.XYZUChangebtn_Click);
+            // 
+            // XYZUGetbtn
+            // 
+            this.XYZUGetbtn.Location = new System.Drawing.Point(259, 72);
+            this.XYZUGetbtn.Name = "XYZUGetbtn";
+            this.XYZUGetbtn.Size = new System.Drawing.Size(107, 23);
+            this.XYZUGetbtn.TabIndex = 41;
+            this.XYZUGetbtn.Text = "변수값 가져오기";
+            this.XYZUGetbtn.UseVisualStyleBackColor = true;
+            this.XYZUGetbtn.Click += new System.EventHandler(this.XYZUGetbtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -800,6 +915,8 @@
             this.CommandPanel.PerformLayout();
             this.LoginPanel.ResumeLayout(false);
             this.LoginPanel.PerformLayout();
+            this.XYZUpanel.ResumeLayout(false);
+            this.XYZUpanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -876,6 +993,17 @@
         private System.Windows.Forms.Panel LoginPanel;
         private System.Windows.Forms.Panel CommandPanel;
         private System.Windows.Forms.Panel BTNPanel;
+        private System.Windows.Forms.Panel XYZUpanel;
+        private System.Windows.Forms.Button XYZUGetbtn;
+        private System.Windows.Forms.Button XYZUChangebtn;
+        private System.Windows.Forms.TextBox Utb;
+        private System.Windows.Forms.Label Ulbl;
+        private System.Windows.Forms.TextBox Ztb;
+        private System.Windows.Forms.Label Zlbl;
+        private System.Windows.Forms.TextBox Ytb;
+        private System.Windows.Forms.Label Ylbl;
+        private System.Windows.Forms.TextBox Xtb;
+        private System.Windows.Forms.Label Xlbl;
     }
 }
 

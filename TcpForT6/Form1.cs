@@ -9,6 +9,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace TcpForT6
 {
@@ -74,12 +75,14 @@ namespace TcpForT6
             LoginPanel.Enabled = false;
             CommandPanel.Enabled = false;
             BTNPanel.Enabled = false;
+            XYZUpanel.Enabled = false;
         }
         private void EnabledControl() //버튼 활성화
         {
             LoginPanel.Enabled = true;
             CommandPanel.Enabled = true;
             BTNPanel.Enabled = true;
+            XYZUpanel.Enabled = true;
         }
         private async Task Receive_Data() //로봇이 송신한 결과를 가져와서 띄워주는 부분.
         {
@@ -572,6 +575,66 @@ namespace TcpForT6
                 gCMD = $"$SetVariable,{SetVariableTB.Text}\\n";
                 byte[] Buffer = Encoding.Default.GetBytes(gCMD);
                 gClient.Send(Buffer, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
+        }
+
+        private void XYZUChangebtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                gCMD = $"$SetVariable,X,{Xtb.Text},Double\\n";
+                byte[] BufferX = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(BufferX, SocketFlags.None);
+                Thread.Sleep(1);
+                
+                gCMD = $"$SetVariable,Y,{Ytb.Text},Double\\n";
+                byte[] BufferY = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(BufferY, SocketFlags.None);
+                Thread.Sleep(1);
+
+                gCMD = $"$SetVariable,Z,{Ztb.Text},Double\\n";
+                byte[] BufferZ = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(BufferZ, SocketFlags.None);
+                Thread.Sleep(1);
+
+                gCMD = $"$SetVariable,U,{Utb.Text},Double\\n";
+                byte[] BufferU = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(BufferU, SocketFlags.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
+        }
+
+        private void XYZUGetbtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                gCMD = $"$GetVariable,X,Double\\n";
+                byte[] BufferX = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(BufferX, SocketFlags.None);
+                Thread.Sleep(1);
+
+                gCMD = $"$GetVariable,Y,Double\\n";
+                byte[] BufferY = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(BufferY, SocketFlags.None);
+                Thread.Sleep(1);
+
+                gCMD = $"$GetVariable,Z,Double\\n";
+                byte[] BufferZ = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(BufferZ, SocketFlags.None);
+                Thread.Sleep(1);
+
+                gCMD = $"$GetVariable,U,Double\\n";
+                byte[] BufferU = Encoding.Default.GetBytes(gCMD);
+                gClient.Send(BufferU, SocketFlags.None);
             }
             catch (Exception ex)
             {
