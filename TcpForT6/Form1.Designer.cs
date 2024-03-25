@@ -109,6 +109,8 @@
             this.Ulbl = new System.Windows.Forms.Label();
             this.XYZUChangebtn = new System.Windows.Forms.Button();
             this.XYZUGetbtn = new System.Windows.Forms.Button();
+            this.Testbtn = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.WarpPanel.SuspendLayout();
             this.BTNPanel.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -116,18 +118,20 @@
             this.CommandPanel.SuspendLayout();
             this.LoginPanel.SuspendLayout();
             this.XYZUpanel.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitter1
             // 
             this.splitter1.Location = new System.Drawing.Point(0, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 466);
+            this.splitter1.Size = new System.Drawing.Size(3, 499);
             this.splitter1.TabIndex = 3;
             this.splitter1.TabStop = false;
             // 
             // WarpPanel
             // 
+            this.WarpPanel.Controls.Add(this.panel1);
             this.WarpPanel.Controls.Add(this.XYZUpanel);
             this.WarpPanel.Controls.Add(this.BTNPanel);
             this.WarpPanel.Controls.Add(this.CommandPanel);
@@ -140,7 +144,7 @@
             this.WarpPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WarpPanel.Location = new System.Drawing.Point(0, 0);
             this.WarpPanel.Name = "WarpPanel";
-            this.WarpPanel.Size = new System.Drawing.Size(812, 466);
+            this.WarpPanel.Size = new System.Drawing.Size(1053, 499);
             this.WarpPanel.TabIndex = 2;
             // 
             // BTNPanel
@@ -768,6 +772,7 @@
             this.PortTB.Name = "PortTB";
             this.PortTB.Size = new System.Drawing.Size(100, 21);
             this.PortTB.TabIndex = 3;
+            this.PortTB.Text = "5000";
             // 
             // PortLBL
             // 
@@ -784,6 +789,7 @@
             this.IPTB.Name = "IPTB";
             this.IPTB.Size = new System.Drawing.Size(100, 21);
             this.IPTB.TabIndex = 1;
+            this.IPTB.Text = "192.168.20.2";
             // 
             // IPLBL
             // 
@@ -896,11 +902,29 @@
             this.XYZUGetbtn.UseVisualStyleBackColor = true;
             this.XYZUGetbtn.Click += new System.EventHandler(this.XYZUGetbtn_Click);
             // 
+            // Testbtn
+            // 
+            this.Testbtn.Location = new System.Drawing.Point(3, 7);
+            this.Testbtn.Name = "Testbtn";
+            this.Testbtn.Size = new System.Drawing.Size(82, 23);
+            this.Testbtn.TabIndex = 42;
+            this.Testbtn.Text = "테스트";
+            this.Testbtn.UseVisualStyleBackColor = true;
+            this.Testbtn.Click += new System.EventHandler(this.Testbtn_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.Testbtn);
+            this.panel1.Location = new System.Drawing.Point(817, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(158, 110);
+            this.panel1.TabIndex = 45;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 466);
+            this.ClientSize = new System.Drawing.Size(1053, 499);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.WarpPanel);
             this.Name = "Form1";
@@ -917,6 +941,7 @@
             this.LoginPanel.PerformLayout();
             this.XYZUpanel.ResumeLayout(false);
             this.XYZUpanel.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1004,6 +1029,8 @@
         private System.Windows.Forms.Label Ylbl;
         private System.Windows.Forms.TextBox Xtb;
         private System.Windows.Forms.Label Xlbl;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button Testbtn;
     }
 }
 

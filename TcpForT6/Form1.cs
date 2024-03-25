@@ -642,5 +642,67 @@ namespace TcpForT6
                 DisableControl();
             }
         }
+
+        private void Testbtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //for (int i = 1; i < 6; i++)
+                //{
+                    gCMD = $"$Stop\\n";
+                    byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                    gClient.Send(Buffer, SocketFlags.None);
+
+                    Thread.Sleep(1);
+                    gCMD = $"$SetVariable,idx,{2},Double\\n";
+                    byte[] Bufferidx = Encoding.Default.GetBytes(gCMD);
+                    gClient.Send(Bufferidx, SocketFlags.None);
+
+                    Thread.Sleep(1);
+                    gCMD = $"$Start,1\\n";
+                    byte[] BufferStart = Encoding.Default.GetBytes(gCMD);
+                    gClient.Send(BufferStart, SocketFlags.None);
+
+                    Thread.Sleep(8000);
+
+                    gCMD = $"$Stop\\n";
+                    byte[] Buffer2 = Encoding.Default.GetBytes(gCMD);
+                    gClient.Send(Buffer2, SocketFlags.None);
+
+                    Thread.Sleep(1000);
+                    gCMD = $"$SetVariable,idx,{3},Double\\n";
+                    byte[] Bufferidx2 = Encoding.Default.GetBytes(gCMD);
+                    gClient.Send(Bufferidx2, SocketFlags.None);
+
+                    Thread.Sleep(1);
+                    gCMD = $"$Start,1\\n";
+                    byte[] BufferStart2 = Encoding.Default.GetBytes(gCMD);
+                    gClient.Send(BufferStart2, SocketFlags.None);
+
+                    Thread.Sleep(8000);
+
+                   gCMD = $"$Stop\\n";
+                    byte[] Buffer3 = Encoding.Default.GetBytes(gCMD);
+                    gClient.Send(Buffer3, SocketFlags.None);
+
+                    Thread.Sleep(1000);
+                    gCMD = $"$SetVariable,idx,{4},Double\\n";
+                    byte[] Bufferidx3 = Encoding.Default.GetBytes(gCMD);
+                    gClient.Send(Bufferidx3, SocketFlags.None);
+
+                    Thread.Sleep(1);
+                    gCMD = $"$Start,1\\n";
+                    byte[] BufferStart3 = Encoding.Default.GetBytes(gCMD);
+                    gClient.Send(BufferStart3, SocketFlags.None);
+
+
+                //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                DisableControl();
+            }
+        }
     }
 }
