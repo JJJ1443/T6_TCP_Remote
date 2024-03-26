@@ -83,12 +83,12 @@ namespace TcpForT6
             CommandPanel.Enabled = false;
             BTNPanel.Enabled = false;
             XYZUpanel.Enabled = false;
+            testpanel.Enabled = false;
+            spelpanel.Enabled = false;
 
             ConnectBTN.Text = "연결";
 
             connectpanel.Enabled = true;
-            testpanel.Enabled = true;
-            spelpanel.Enabled = true;
         }
         private void EnabledControl() //버튼 활성화
         {
@@ -96,12 +96,12 @@ namespace TcpForT6
             CommandPanel.Enabled = true;
             BTNPanel.Enabled = true;
             XYZUpanel.Enabled = true;
+            testpanel.Enabled = true;
+            spelpanel.Enabled = true;
 
             ConnectBTN.Text = "연결 해제";
 
             connectpanel.Enabled = false;
-            testpanel.Enabled = false;
-            spelpanel.Enabled = false;
         }
         private async Task Receive_Data() //로봇이 송신한 결과를 가져와서 띄워주는 부분.
         {
@@ -734,7 +734,7 @@ namespace TcpForT6
                     gCMD = $"$Execute,\"{spel}\"\\n";
                     byte[] Buffer = Encoding.Default.GetBytes(gCMD);
                     gClient.Send(Buffer, SocketFlags.None);
-                    await Task.Delay(1000);
+                    await Task.Delay(700);
                 }
                 catch (Exception ex)
                 {

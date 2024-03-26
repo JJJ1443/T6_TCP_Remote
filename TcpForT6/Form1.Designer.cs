@@ -30,6 +30,14 @@
         {
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.WarpPanel = new System.Windows.Forms.Panel();
+            this.connectpanel = new System.Windows.Forms.Panel();
+            this.PortTB = new System.Windows.Forms.TextBox();
+            this.IPLBL = new System.Windows.Forms.Label();
+            this.IPTB = new System.Windows.Forms.TextBox();
+            this.PortLBL = new System.Windows.Forms.Label();
+            this.spelpanel = new System.Windows.Forms.Panel();
+            this.buttonrichexecute = new System.Windows.Forms.Button();
+            this.richTextBoxSpel = new System.Windows.Forms.RichTextBox();
             this.testpanel = new System.Windows.Forms.Panel();
             this.Testbtn = new System.Windows.Forms.Button();
             this.XYZUpanel = new System.Windows.Forms.Panel();
@@ -43,6 +51,7 @@
             this.Ylbl = new System.Windows.Forms.Label();
             this.Xtb = new System.Windows.Forms.TextBox();
             this.Xlbl = new System.Windows.Forms.Label();
+            this.ConnectBTN = new System.Windows.Forms.Button();
             this.BTNPanel = new System.Windows.Forms.Panel();
             this.HomeTB = new System.Windows.Forms.TextBox();
             this.MotorOffTB = new System.Windows.Forms.TextBox();
@@ -106,16 +115,9 @@
             this.PasswordTB = new System.Windows.Forms.TextBox();
             this.LoginBTN = new System.Windows.Forms.Button();
             this.LogoutBTN = new System.Windows.Forms.Button();
-            this.ConnectBTN = new System.Windows.Forms.Button();
-            this.PortTB = new System.Windows.Forms.TextBox();
-            this.PortLBL = new System.Windows.Forms.Label();
-            this.IPTB = new System.Windows.Forms.TextBox();
-            this.IPLBL = new System.Windows.Forms.Label();
-            this.spelpanel = new System.Windows.Forms.Panel();
-            this.richTextBoxSpel = new System.Windows.Forms.RichTextBox();
-            this.buttonrichexecute = new System.Windows.Forms.Button();
-            this.connectpanel = new System.Windows.Forms.Panel();
             this.WarpPanel.SuspendLayout();
+            this.connectpanel.SuspendLayout();
+            this.spelpanel.SuspendLayout();
             this.testpanel.SuspendLayout();
             this.XYZUpanel.SuspendLayout();
             this.BTNPanel.SuspendLayout();
@@ -123,8 +125,6 @@
             this.flowLayoutPanel1.SuspendLayout();
             this.CommandPanel.SuspendLayout();
             this.LoginPanel.SuspendLayout();
-            this.spelpanel.SuspendLayout();
-            this.connectpanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitter1
@@ -151,9 +151,83 @@
             this.WarpPanel.Size = new System.Drawing.Size(1053, 634);
             this.WarpPanel.TabIndex = 2;
             // 
+            // connectpanel
+            // 
+            this.connectpanel.Controls.Add(this.PortTB);
+            this.connectpanel.Controls.Add(this.IPLBL);
+            this.connectpanel.Controls.Add(this.IPTB);
+            this.connectpanel.Controls.Add(this.PortLBL);
+            this.connectpanel.Location = new System.Drawing.Point(3, 1);
+            this.connectpanel.Name = "connectpanel";
+            this.connectpanel.Size = new System.Drawing.Size(158, 66);
+            this.connectpanel.TabIndex = 47;
+            // 
+            // PortTB
+            // 
+            this.PortTB.Location = new System.Drawing.Point(42, 35);
+            this.PortTB.Name = "PortTB";
+            this.PortTB.Size = new System.Drawing.Size(100, 21);
+            this.PortTB.TabIndex = 3;
+            this.PortTB.Text = "5000";
+            // 
+            // IPLBL
+            // 
+            this.IPLBL.AutoSize = true;
+            this.IPLBL.Location = new System.Drawing.Point(20, 11);
+            this.IPLBL.Name = "IPLBL";
+            this.IPLBL.Size = new System.Drawing.Size(16, 12);
+            this.IPLBL.TabIndex = 0;
+            this.IPLBL.Text = "IP";
+            // 
+            // IPTB
+            // 
+            this.IPTB.Location = new System.Drawing.Point(42, 8);
+            this.IPTB.Name = "IPTB";
+            this.IPTB.Size = new System.Drawing.Size(100, 21);
+            this.IPTB.TabIndex = 1;
+            this.IPTB.Text = "127.0.0.2";
+            // 
+            // PortLBL
+            // 
+            this.PortLBL.AutoSize = true;
+            this.PortLBL.Location = new System.Drawing.Point(9, 38);
+            this.PortLBL.Name = "PortLBL";
+            this.PortLBL.Size = new System.Drawing.Size(27, 12);
+            this.PortLBL.TabIndex = 2;
+            this.PortLBL.Text = "Port";
+            // 
+            // spelpanel
+            // 
+            this.spelpanel.Controls.Add(this.buttonrichexecute);
+            this.spelpanel.Controls.Add(this.richTextBoxSpel);
+            this.spelpanel.Enabled = false;
+            this.spelpanel.Location = new System.Drawing.Point(0, 461);
+            this.spelpanel.Name = "spelpanel";
+            this.spelpanel.Size = new System.Drawing.Size(470, 161);
+            this.spelpanel.TabIndex = 46;
+            // 
+            // buttonrichexecute
+            // 
+            this.buttonrichexecute.Location = new System.Drawing.Point(385, 5);
+            this.buttonrichexecute.Name = "buttonrichexecute";
+            this.buttonrichexecute.Size = new System.Drawing.Size(75, 23);
+            this.buttonrichexecute.TabIndex = 47;
+            this.buttonrichexecute.Text = "스펠 전송";
+            this.buttonrichexecute.UseVisualStyleBackColor = true;
+            this.buttonrichexecute.Click += new System.EventHandler(this.buttonrichexecute_Click);
+            // 
+            // richTextBoxSpel
+            // 
+            this.richTextBoxSpel.Location = new System.Drawing.Point(3, 5);
+            this.richTextBoxSpel.Name = "richTextBoxSpel";
+            this.richTextBoxSpel.Size = new System.Drawing.Size(376, 153);
+            this.richTextBoxSpel.TabIndex = 0;
+            this.richTextBoxSpel.Text = "";
+            // 
             // testpanel
             // 
             this.testpanel.Controls.Add(this.Testbtn);
+            this.testpanel.Enabled = false;
             this.testpanel.Location = new System.Drawing.Point(817, 12);
             this.testpanel.Name = "testpanel";
             this.testpanel.Size = new System.Drawing.Size(92, 42);
@@ -270,6 +344,16 @@
             this.Xlbl.Size = new System.Drawing.Size(13, 12);
             this.Xlbl.TabIndex = 0;
             this.Xlbl.Text = "X";
+            // 
+            // ConnectBTN
+            // 
+            this.ConnectBTN.Location = new System.Drawing.Point(86, 71);
+            this.ConnectBTN.Name = "ConnectBTN";
+            this.ConnectBTN.Size = new System.Drawing.Size(75, 23);
+            this.ConnectBTN.TabIndex = 4;
+            this.ConnectBTN.Text = "연결";
+            this.ConnectBTN.UseVisualStyleBackColor = true;
+            this.ConnectBTN.Click += new System.EventHandler(this.ConnectBTN_Click);
             // 
             // BTNPanel
             // 
@@ -880,88 +964,6 @@
             this.LogoutBTN.UseVisualStyleBackColor = true;
             this.LogoutBTN.Click += new System.EventHandler(this.LogoutBTN_Click);
             // 
-            // ConnectBTN
-            // 
-            this.ConnectBTN.Location = new System.Drawing.Point(86, 71);
-            this.ConnectBTN.Name = "ConnectBTN";
-            this.ConnectBTN.Size = new System.Drawing.Size(75, 23);
-            this.ConnectBTN.TabIndex = 4;
-            this.ConnectBTN.Text = "연결";
-            this.ConnectBTN.UseVisualStyleBackColor = true;
-            this.ConnectBTN.Click += new System.EventHandler(this.ConnectBTN_Click);
-            // 
-            // PortTB
-            // 
-            this.PortTB.Location = new System.Drawing.Point(42, 35);
-            this.PortTB.Name = "PortTB";
-            this.PortTB.Size = new System.Drawing.Size(100, 21);
-            this.PortTB.TabIndex = 3;
-            this.PortTB.Text = "5000";
-            // 
-            // PortLBL
-            // 
-            this.PortLBL.AutoSize = true;
-            this.PortLBL.Location = new System.Drawing.Point(9, 38);
-            this.PortLBL.Name = "PortLBL";
-            this.PortLBL.Size = new System.Drawing.Size(27, 12);
-            this.PortLBL.TabIndex = 2;
-            this.PortLBL.Text = "Port";
-            // 
-            // IPTB
-            // 
-            this.IPTB.Location = new System.Drawing.Point(42, 8);
-            this.IPTB.Name = "IPTB";
-            this.IPTB.Size = new System.Drawing.Size(100, 21);
-            this.IPTB.TabIndex = 1;
-            this.IPTB.Text = "127.0.0.2";
-            // 
-            // IPLBL
-            // 
-            this.IPLBL.AutoSize = true;
-            this.IPLBL.Location = new System.Drawing.Point(20, 11);
-            this.IPLBL.Name = "IPLBL";
-            this.IPLBL.Size = new System.Drawing.Size(16, 12);
-            this.IPLBL.TabIndex = 0;
-            this.IPLBL.Text = "IP";
-            // 
-            // spelpanel
-            // 
-            this.spelpanel.Controls.Add(this.buttonrichexecute);
-            this.spelpanel.Controls.Add(this.richTextBoxSpel);
-            this.spelpanel.Location = new System.Drawing.Point(0, 461);
-            this.spelpanel.Name = "spelpanel";
-            this.spelpanel.Size = new System.Drawing.Size(470, 161);
-            this.spelpanel.TabIndex = 46;
-            // 
-            // richTextBoxSpel
-            // 
-            this.richTextBoxSpel.Location = new System.Drawing.Point(3, 5);
-            this.richTextBoxSpel.Name = "richTextBoxSpel";
-            this.richTextBoxSpel.Size = new System.Drawing.Size(376, 153);
-            this.richTextBoxSpel.TabIndex = 0;
-            this.richTextBoxSpel.Text = "";
-            // 
-            // buttonrichexecute
-            // 
-            this.buttonrichexecute.Location = new System.Drawing.Point(385, 5);
-            this.buttonrichexecute.Name = "buttonrichexecute";
-            this.buttonrichexecute.Size = new System.Drawing.Size(75, 23);
-            this.buttonrichexecute.TabIndex = 47;
-            this.buttonrichexecute.Text = "스펠 전송";
-            this.buttonrichexecute.UseVisualStyleBackColor = true;
-            this.buttonrichexecute.Click += new System.EventHandler(this.buttonrichexecute_Click);
-            // 
-            // connectpanel
-            // 
-            this.connectpanel.Controls.Add(this.PortTB);
-            this.connectpanel.Controls.Add(this.IPLBL);
-            this.connectpanel.Controls.Add(this.IPTB);
-            this.connectpanel.Controls.Add(this.PortLBL);
-            this.connectpanel.Location = new System.Drawing.Point(3, 1);
-            this.connectpanel.Name = "connectpanel";
-            this.connectpanel.Size = new System.Drawing.Size(158, 66);
-            this.connectpanel.TabIndex = 47;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -972,6 +974,9 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.WarpPanel.ResumeLayout(false);
+            this.connectpanel.ResumeLayout(false);
+            this.connectpanel.PerformLayout();
+            this.spelpanel.ResumeLayout(false);
             this.testpanel.ResumeLayout(false);
             this.XYZUpanel.ResumeLayout(false);
             this.XYZUpanel.PerformLayout();
@@ -983,9 +988,6 @@
             this.CommandPanel.PerformLayout();
             this.LoginPanel.ResumeLayout(false);
             this.LoginPanel.PerformLayout();
-            this.spelpanel.ResumeLayout(false);
-            this.connectpanel.ResumeLayout(false);
-            this.connectpanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
