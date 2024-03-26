@@ -734,7 +734,7 @@ namespace TcpForT6
                     gCMD = $"$Execute,\"{spel}\"\\n";
                     byte[] Buffer = Encoding.Default.GetBytes(gCMD);
                     gClient.Send(Buffer, SocketFlags.None);
-                    await Task.Delay(700);
+                    await Task.Delay(1000);
                 }
                 catch (Exception ex)
                 {
