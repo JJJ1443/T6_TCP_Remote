@@ -30,6 +30,19 @@
         {
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.WarpPanel = new System.Windows.Forms.Panel();
+            this.testpanel = new System.Windows.Forms.Panel();
+            this.Testbtn = new System.Windows.Forms.Button();
+            this.XYZUpanel = new System.Windows.Forms.Panel();
+            this.XYZUGetbtn = new System.Windows.Forms.Button();
+            this.XYZUChangebtn = new System.Windows.Forms.Button();
+            this.Utb = new System.Windows.Forms.TextBox();
+            this.Ulbl = new System.Windows.Forms.Label();
+            this.Ztb = new System.Windows.Forms.TextBox();
+            this.Zlbl = new System.Windows.Forms.Label();
+            this.Ytb = new System.Windows.Forms.TextBox();
+            this.Ylbl = new System.Windows.Forms.Label();
+            this.Xtb = new System.Windows.Forms.TextBox();
+            this.Xlbl = new System.Windows.Forms.Label();
             this.BTNPanel = new System.Windows.Forms.Panel();
             this.HomeTB = new System.Windows.Forms.TextBox();
             this.MotorOffTB = new System.Windows.Forms.TextBox();
@@ -98,54 +111,165 @@
             this.PortLBL = new System.Windows.Forms.Label();
             this.IPTB = new System.Windows.Forms.TextBox();
             this.IPLBL = new System.Windows.Forms.Label();
-            this.XYZUpanel = new System.Windows.Forms.Panel();
-            this.Xlbl = new System.Windows.Forms.Label();
-            this.Xtb = new System.Windows.Forms.TextBox();
-            this.Ytb = new System.Windows.Forms.TextBox();
-            this.Ylbl = new System.Windows.Forms.Label();
-            this.Ztb = new System.Windows.Forms.TextBox();
-            this.Zlbl = new System.Windows.Forms.Label();
-            this.Utb = new System.Windows.Forms.TextBox();
-            this.Ulbl = new System.Windows.Forms.Label();
-            this.XYZUChangebtn = new System.Windows.Forms.Button();
-            this.XYZUGetbtn = new System.Windows.Forms.Button();
-            this.Testbtn = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.spelpanel = new System.Windows.Forms.Panel();
+            this.richTextBoxSpel = new System.Windows.Forms.RichTextBox();
+            this.buttonrichexecute = new System.Windows.Forms.Button();
+            this.connectpanel = new System.Windows.Forms.Panel();
             this.WarpPanel.SuspendLayout();
+            this.testpanel.SuspendLayout();
+            this.XYZUpanel.SuspendLayout();
             this.BTNPanel.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.CommandPanel.SuspendLayout();
             this.LoginPanel.SuspendLayout();
-            this.XYZUpanel.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.spelpanel.SuspendLayout();
+            this.connectpanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitter1
             // 
             this.splitter1.Location = new System.Drawing.Point(0, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 499);
+            this.splitter1.Size = new System.Drawing.Size(3, 634);
             this.splitter1.TabIndex = 3;
             this.splitter1.TabStop = false;
             // 
             // WarpPanel
             // 
-            this.WarpPanel.Controls.Add(this.panel1);
+            this.WarpPanel.Controls.Add(this.connectpanel);
+            this.WarpPanel.Controls.Add(this.spelpanel);
+            this.WarpPanel.Controls.Add(this.testpanel);
             this.WarpPanel.Controls.Add(this.XYZUpanel);
+            this.WarpPanel.Controls.Add(this.ConnectBTN);
             this.WarpPanel.Controls.Add(this.BTNPanel);
             this.WarpPanel.Controls.Add(this.CommandPanel);
             this.WarpPanel.Controls.Add(this.LoginPanel);
-            this.WarpPanel.Controls.Add(this.ConnectBTN);
-            this.WarpPanel.Controls.Add(this.PortTB);
-            this.WarpPanel.Controls.Add(this.PortLBL);
-            this.WarpPanel.Controls.Add(this.IPTB);
-            this.WarpPanel.Controls.Add(this.IPLBL);
             this.WarpPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WarpPanel.Location = new System.Drawing.Point(0, 0);
             this.WarpPanel.Name = "WarpPanel";
-            this.WarpPanel.Size = new System.Drawing.Size(1053, 499);
+            this.WarpPanel.Size = new System.Drawing.Size(1053, 634);
             this.WarpPanel.TabIndex = 2;
+            // 
+            // testpanel
+            // 
+            this.testpanel.Controls.Add(this.Testbtn);
+            this.testpanel.Location = new System.Drawing.Point(817, 12);
+            this.testpanel.Name = "testpanel";
+            this.testpanel.Size = new System.Drawing.Size(92, 42);
+            this.testpanel.TabIndex = 45;
+            // 
+            // Testbtn
+            // 
+            this.Testbtn.Location = new System.Drawing.Point(3, 7);
+            this.Testbtn.Name = "Testbtn";
+            this.Testbtn.Size = new System.Drawing.Size(82, 23);
+            this.Testbtn.TabIndex = 42;
+            this.Testbtn.Text = "테스트";
+            this.Testbtn.UseVisualStyleBackColor = true;
+            this.Testbtn.Click += new System.EventHandler(this.Testbtn_Click);
+            // 
+            // XYZUpanel
+            // 
+            this.XYZUpanel.Controls.Add(this.XYZUGetbtn);
+            this.XYZUpanel.Controls.Add(this.XYZUChangebtn);
+            this.XYZUpanel.Controls.Add(this.Utb);
+            this.XYZUpanel.Controls.Add(this.Ulbl);
+            this.XYZUpanel.Controls.Add(this.Ztb);
+            this.XYZUpanel.Controls.Add(this.Zlbl);
+            this.XYZUpanel.Controls.Add(this.Ytb);
+            this.XYZUpanel.Controls.Add(this.Ylbl);
+            this.XYZUpanel.Controls.Add(this.Xtb);
+            this.XYZUpanel.Controls.Add(this.Xlbl);
+            this.XYZUpanel.Enabled = false;
+            this.XYZUpanel.Location = new System.Drawing.Point(3, 95);
+            this.XYZUpanel.Name = "XYZUpanel";
+            this.XYZUpanel.Size = new System.Drawing.Size(373, 133);
+            this.XYZUpanel.TabIndex = 44;
+            // 
+            // XYZUGetbtn
+            // 
+            this.XYZUGetbtn.Location = new System.Drawing.Point(259, 72);
+            this.XYZUGetbtn.Name = "XYZUGetbtn";
+            this.XYZUGetbtn.Size = new System.Drawing.Size(107, 23);
+            this.XYZUGetbtn.TabIndex = 41;
+            this.XYZUGetbtn.Text = "변수값 가져오기";
+            this.XYZUGetbtn.UseVisualStyleBackColor = true;
+            this.XYZUGetbtn.Click += new System.EventHandler(this.XYZUGetbtn_Click);
+            // 
+            // XYZUChangebtn
+            // 
+            this.XYZUChangebtn.Location = new System.Drawing.Point(259, 101);
+            this.XYZUChangebtn.Name = "XYZUChangebtn";
+            this.XYZUChangebtn.Size = new System.Drawing.Size(107, 23);
+            this.XYZUChangebtn.TabIndex = 40;
+            this.XYZUChangebtn.Text = "변수값 변경";
+            this.XYZUChangebtn.UseVisualStyleBackColor = true;
+            this.XYZUChangebtn.Click += new System.EventHandler(this.XYZUChangebtn_Click);
+            // 
+            // Utb
+            // 
+            this.Utb.Location = new System.Drawing.Point(25, 85);
+            this.Utb.Name = "Utb";
+            this.Utb.Size = new System.Drawing.Size(133, 21);
+            this.Utb.TabIndex = 39;
+            // 
+            // Ulbl
+            // 
+            this.Ulbl.AutoSize = true;
+            this.Ulbl.Location = new System.Drawing.Point(7, 94);
+            this.Ulbl.Name = "Ulbl";
+            this.Ulbl.Size = new System.Drawing.Size(13, 12);
+            this.Ulbl.TabIndex = 38;
+            this.Ulbl.Text = "U";
+            // 
+            // Ztb
+            // 
+            this.Ztb.Location = new System.Drawing.Point(25, 58);
+            this.Ztb.Name = "Ztb";
+            this.Ztb.Size = new System.Drawing.Size(133, 21);
+            this.Ztb.TabIndex = 37;
+            // 
+            // Zlbl
+            // 
+            this.Zlbl.AutoSize = true;
+            this.Zlbl.Location = new System.Drawing.Point(6, 65);
+            this.Zlbl.Name = "Zlbl";
+            this.Zlbl.Size = new System.Drawing.Size(13, 12);
+            this.Zlbl.TabIndex = 36;
+            this.Zlbl.Text = "Z";
+            // 
+            // Ytb
+            // 
+            this.Ytb.Location = new System.Drawing.Point(25, 33);
+            this.Ytb.Name = "Ytb";
+            this.Ytb.Size = new System.Drawing.Size(133, 21);
+            this.Ytb.TabIndex = 35;
+            // 
+            // Ylbl
+            // 
+            this.Ylbl.AutoSize = true;
+            this.Ylbl.Location = new System.Drawing.Point(6, 36);
+            this.Ylbl.Name = "Ylbl";
+            this.Ylbl.Size = new System.Drawing.Size(13, 12);
+            this.Ylbl.TabIndex = 34;
+            this.Ylbl.Text = "Y";
+            // 
+            // Xtb
+            // 
+            this.Xtb.Location = new System.Drawing.Point(25, 6);
+            this.Xtb.Name = "Xtb";
+            this.Xtb.Size = new System.Drawing.Size(133, 21);
+            this.Xtb.TabIndex = 33;
+            // 
+            // Xlbl
+            // 
+            this.Xlbl.AutoSize = true;
+            this.Xlbl.Location = new System.Drawing.Point(6, 9);
+            this.Xlbl.Name = "Xlbl";
+            this.Xlbl.Size = new System.Drawing.Size(13, 12);
+            this.Xlbl.TabIndex = 0;
+            this.Xlbl.Text = "X";
             // 
             // BTNPanel
             // 
@@ -714,7 +838,7 @@
             this.LoginPanel.Controls.Add(this.LoginBTN);
             this.LoginPanel.Controls.Add(this.LogoutBTN);
             this.LoginPanel.Enabled = false;
-            this.LoginPanel.Location = new System.Drawing.Point(160, 15);
+            this.LoginPanel.Location = new System.Drawing.Point(167, 15);
             this.LoginPanel.Name = "LoginPanel";
             this.LoginPanel.Size = new System.Drawing.Size(188, 65);
             this.LoginPanel.TabIndex = 41;
@@ -758,7 +882,7 @@
             // 
             // ConnectBTN
             // 
-            this.ConnectBTN.Location = new System.Drawing.Point(68, 66);
+            this.ConnectBTN.Location = new System.Drawing.Point(86, 71);
             this.ConnectBTN.Name = "ConnectBTN";
             this.ConnectBTN.Size = new System.Drawing.Size(75, 23);
             this.ConnectBTN.TabIndex = 4;
@@ -768,7 +892,7 @@
             // 
             // PortTB
             // 
-            this.PortTB.Location = new System.Drawing.Point(43, 39);
+            this.PortTB.Location = new System.Drawing.Point(42, 35);
             this.PortTB.Name = "PortTB";
             this.PortTB.Size = new System.Drawing.Size(100, 21);
             this.PortTB.TabIndex = 3;
@@ -777,7 +901,7 @@
             // PortLBL
             // 
             this.PortLBL.AutoSize = true;
-            this.PortLBL.Location = new System.Drawing.Point(10, 42);
+            this.PortLBL.Location = new System.Drawing.Point(9, 38);
             this.PortLBL.Name = "PortLBL";
             this.PortLBL.Size = new System.Drawing.Size(27, 12);
             this.PortLBL.TabIndex = 2;
@@ -785,152 +909,72 @@
             // 
             // IPTB
             // 
-            this.IPTB.Location = new System.Drawing.Point(43, 12);
+            this.IPTB.Location = new System.Drawing.Point(42, 8);
             this.IPTB.Name = "IPTB";
             this.IPTB.Size = new System.Drawing.Size(100, 21);
             this.IPTB.TabIndex = 1;
-            this.IPTB.Text = "192.168.20.2";
+            this.IPTB.Text = "127.0.0.2";
             // 
             // IPLBL
             // 
             this.IPLBL.AutoSize = true;
-            this.IPLBL.Location = new System.Drawing.Point(21, 15);
+            this.IPLBL.Location = new System.Drawing.Point(20, 11);
             this.IPLBL.Name = "IPLBL";
             this.IPLBL.Size = new System.Drawing.Size(16, 12);
             this.IPLBL.TabIndex = 0;
             this.IPLBL.Text = "IP";
             // 
-            // XYZUpanel
+            // spelpanel
             // 
-            this.XYZUpanel.Controls.Add(this.XYZUGetbtn);
-            this.XYZUpanel.Controls.Add(this.XYZUChangebtn);
-            this.XYZUpanel.Controls.Add(this.Utb);
-            this.XYZUpanel.Controls.Add(this.Ulbl);
-            this.XYZUpanel.Controls.Add(this.Ztb);
-            this.XYZUpanel.Controls.Add(this.Zlbl);
-            this.XYZUpanel.Controls.Add(this.Ytb);
-            this.XYZUpanel.Controls.Add(this.Ylbl);
-            this.XYZUpanel.Controls.Add(this.Xtb);
-            this.XYZUpanel.Controls.Add(this.Xlbl);
-            this.XYZUpanel.Enabled = false;
-            this.XYZUpanel.Location = new System.Drawing.Point(3, 95);
-            this.XYZUpanel.Name = "XYZUpanel";
-            this.XYZUpanel.Size = new System.Drawing.Size(373, 133);
-            this.XYZUpanel.TabIndex = 44;
+            this.spelpanel.Controls.Add(this.buttonrichexecute);
+            this.spelpanel.Controls.Add(this.richTextBoxSpel);
+            this.spelpanel.Location = new System.Drawing.Point(0, 461);
+            this.spelpanel.Name = "spelpanel";
+            this.spelpanel.Size = new System.Drawing.Size(470, 161);
+            this.spelpanel.TabIndex = 46;
             // 
-            // Xlbl
+            // richTextBoxSpel
             // 
-            this.Xlbl.AutoSize = true;
-            this.Xlbl.Location = new System.Drawing.Point(6, 9);
-            this.Xlbl.Name = "Xlbl";
-            this.Xlbl.Size = new System.Drawing.Size(13, 12);
-            this.Xlbl.TabIndex = 0;
-            this.Xlbl.Text = "X";
+            this.richTextBoxSpel.Location = new System.Drawing.Point(3, 5);
+            this.richTextBoxSpel.Name = "richTextBoxSpel";
+            this.richTextBoxSpel.Size = new System.Drawing.Size(376, 153);
+            this.richTextBoxSpel.TabIndex = 0;
+            this.richTextBoxSpel.Text = "";
             // 
-            // Xtb
+            // buttonrichexecute
             // 
-            this.Xtb.Location = new System.Drawing.Point(25, 6);
-            this.Xtb.Name = "Xtb";
-            this.Xtb.Size = new System.Drawing.Size(133, 21);
-            this.Xtb.TabIndex = 33;
+            this.buttonrichexecute.Location = new System.Drawing.Point(385, 5);
+            this.buttonrichexecute.Name = "buttonrichexecute";
+            this.buttonrichexecute.Size = new System.Drawing.Size(75, 23);
+            this.buttonrichexecute.TabIndex = 47;
+            this.buttonrichexecute.Text = "스펠 전송";
+            this.buttonrichexecute.UseVisualStyleBackColor = true;
+            this.buttonrichexecute.Click += new System.EventHandler(this.buttonrichexecute_Click);
             // 
-            // Ytb
+            // connectpanel
             // 
-            this.Ytb.Location = new System.Drawing.Point(25, 33);
-            this.Ytb.Name = "Ytb";
-            this.Ytb.Size = new System.Drawing.Size(133, 21);
-            this.Ytb.TabIndex = 35;
-            // 
-            // Ylbl
-            // 
-            this.Ylbl.AutoSize = true;
-            this.Ylbl.Location = new System.Drawing.Point(6, 36);
-            this.Ylbl.Name = "Ylbl";
-            this.Ylbl.Size = new System.Drawing.Size(13, 12);
-            this.Ylbl.TabIndex = 34;
-            this.Ylbl.Text = "Y";
-            // 
-            // Ztb
-            // 
-            this.Ztb.Location = new System.Drawing.Point(25, 58);
-            this.Ztb.Name = "Ztb";
-            this.Ztb.Size = new System.Drawing.Size(133, 21);
-            this.Ztb.TabIndex = 37;
-            // 
-            // Zlbl
-            // 
-            this.Zlbl.AutoSize = true;
-            this.Zlbl.Location = new System.Drawing.Point(6, 65);
-            this.Zlbl.Name = "Zlbl";
-            this.Zlbl.Size = new System.Drawing.Size(13, 12);
-            this.Zlbl.TabIndex = 36;
-            this.Zlbl.Text = "Z";
-            // 
-            // Utb
-            // 
-            this.Utb.Location = new System.Drawing.Point(25, 85);
-            this.Utb.Name = "Utb";
-            this.Utb.Size = new System.Drawing.Size(133, 21);
-            this.Utb.TabIndex = 39;
-            // 
-            // Ulbl
-            // 
-            this.Ulbl.AutoSize = true;
-            this.Ulbl.Location = new System.Drawing.Point(7, 94);
-            this.Ulbl.Name = "Ulbl";
-            this.Ulbl.Size = new System.Drawing.Size(13, 12);
-            this.Ulbl.TabIndex = 38;
-            this.Ulbl.Text = "U";
-            // 
-            // XYZUChangebtn
-            // 
-            this.XYZUChangebtn.Location = new System.Drawing.Point(259, 101);
-            this.XYZUChangebtn.Name = "XYZUChangebtn";
-            this.XYZUChangebtn.Size = new System.Drawing.Size(107, 23);
-            this.XYZUChangebtn.TabIndex = 40;
-            this.XYZUChangebtn.Text = "변수값 변경";
-            this.XYZUChangebtn.UseVisualStyleBackColor = true;
-            this.XYZUChangebtn.Click += new System.EventHandler(this.XYZUChangebtn_Click);
-            // 
-            // XYZUGetbtn
-            // 
-            this.XYZUGetbtn.Location = new System.Drawing.Point(259, 72);
-            this.XYZUGetbtn.Name = "XYZUGetbtn";
-            this.XYZUGetbtn.Size = new System.Drawing.Size(107, 23);
-            this.XYZUGetbtn.TabIndex = 41;
-            this.XYZUGetbtn.Text = "변수값 가져오기";
-            this.XYZUGetbtn.UseVisualStyleBackColor = true;
-            this.XYZUGetbtn.Click += new System.EventHandler(this.XYZUGetbtn_Click);
-            // 
-            // Testbtn
-            // 
-            this.Testbtn.Location = new System.Drawing.Point(3, 7);
-            this.Testbtn.Name = "Testbtn";
-            this.Testbtn.Size = new System.Drawing.Size(82, 23);
-            this.Testbtn.TabIndex = 42;
-            this.Testbtn.Text = "테스트";
-            this.Testbtn.UseVisualStyleBackColor = true;
-            this.Testbtn.Click += new System.EventHandler(this.Testbtn_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.Testbtn);
-            this.panel1.Location = new System.Drawing.Point(817, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(158, 110);
-            this.panel1.TabIndex = 45;
+            this.connectpanel.Controls.Add(this.PortTB);
+            this.connectpanel.Controls.Add(this.IPLBL);
+            this.connectpanel.Controls.Add(this.IPTB);
+            this.connectpanel.Controls.Add(this.PortLBL);
+            this.connectpanel.Location = new System.Drawing.Point(3, 1);
+            this.connectpanel.Name = "connectpanel";
+            this.connectpanel.Size = new System.Drawing.Size(158, 66);
+            this.connectpanel.TabIndex = 47;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1053, 499);
+            this.ClientSize = new System.Drawing.Size(1053, 634);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.WarpPanel);
             this.Name = "Form1";
             this.Text = "Form1";
             this.WarpPanel.ResumeLayout(false);
-            this.WarpPanel.PerformLayout();
+            this.testpanel.ResumeLayout(false);
+            this.XYZUpanel.ResumeLayout(false);
+            this.XYZUpanel.PerformLayout();
             this.BTNPanel.ResumeLayout(false);
             this.BTNPanel.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
@@ -939,9 +983,9 @@
             this.CommandPanel.PerformLayout();
             this.LoginPanel.ResumeLayout(false);
             this.LoginPanel.PerformLayout();
-            this.XYZUpanel.ResumeLayout(false);
-            this.XYZUpanel.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            this.spelpanel.ResumeLayout(false);
+            this.connectpanel.ResumeLayout(false);
+            this.connectpanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1029,8 +1073,12 @@
         private System.Windows.Forms.Label Ylbl;
         private System.Windows.Forms.TextBox Xtb;
         private System.Windows.Forms.Label Xlbl;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel testpanel;
         private System.Windows.Forms.Button Testbtn;
+        private System.Windows.Forms.Panel spelpanel;
+        private System.Windows.Forms.Button buttonrichexecute;
+        private System.Windows.Forms.RichTextBox richTextBoxSpel;
+        private System.Windows.Forms.Panel connectpanel;
     }
 }
 

@@ -34,41 +34,48 @@ namespace TcpForT6
         }
         private void ConnectBTN_Click(object sender, EventArgs e) //로봇과 연결 하는 부분
         {
-            string IP = IPTB.Text;
-            int Port = int.Parse(PortTB.Text);
-            gClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IAsyncResult waiter = gClient.BeginConnect(new IPEndPoint(IPAddress.Parse(IP), Port), null, null);
-            bool success = waiter.AsyncWaitHandle.WaitOne(1000, true);
-            try
+            if (ConnectBTN.Text == "연결")
             {
-                if (success)
+                string IP = IPTB.Text;
+                int Port = int.Parse(PortTB.Text);
+                gClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                IAsyncResult waiter = gClient.BeginConnect(new IPEndPoint(IPAddress.Parse(IP), Port), null, null);
+                bool success = waiter.AsyncWaitHandle.WaitOne(1000, true);
+                try
                 {
-                    MessageBox.Show("연결 완료");
-                    Task task = Receive_Data();
-                    if (InvokeRequired)
+                    if (success)
                     {
-                        this.Invoke(new MethodInvoker(delegate ()
+                        MessageBox.Show("연결 완료");
+                        Task task = Receive_Data();
+                        if (InvokeRequired)
+                        {
+                            this.Invoke(new MethodInvoker(delegate ()
+                            {
+                                EnabledControl();
+                            }));
+                        }
+                        else
                         {
                             EnabledControl();
-                        }));
+                        }
                     }
                     else
                     {
-                        EnabledControl();
+                        gClient.Close();
+                        MessageBox.Show("연결 실패");
                     }
                 }
-                else
+                catch (Exception ex)
                 {
                     gClient.Close();
-                    MessageBox.Show("연결 실패");
+                    MessageBox.Show(ex.Message);
                 }
             }
-            catch(Exception ex)
+            else
             {
                 gClient.Close();
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("연결 해제");
             }
-            
         }
         private void DisableControl() // 버튼 비활성화
         {
@@ -76,6 +83,12 @@ namespace TcpForT6
             CommandPanel.Enabled = false;
             BTNPanel.Enabled = false;
             XYZUpanel.Enabled = false;
+
+            ConnectBTN.Text = "연결";
+
+            connectpanel.Enabled = true;
+            testpanel.Enabled = true;
+            spelpanel.Enabled = true;
         }
         private void EnabledControl() //버튼 활성화
         {
@@ -83,6 +96,12 @@ namespace TcpForT6
             CommandPanel.Enabled = true;
             BTNPanel.Enabled = true;
             XYZUpanel.Enabled = true;
+
+            ConnectBTN.Text = "연결 해제";
+
+            connectpanel.Enabled = false;
+            testpanel.Enabled = false;
+            spelpanel.Enabled = false;
         }
         private async Task Receive_Data() //로봇이 송신한 결과를 가져와서 띄워주는 부분.
         {
@@ -152,7 +171,7 @@ namespace TcpForT6
         {
             try
             {
-                gCMD = $"$Execute,{ExecuteTB.Text}\\n";
+                gCMD = $"$Execute,\"{ExecuteTB.Text}\"\\n";
                 byte[] Buffer = Encoding.Default.GetBytes(gCMD);
                 gClient.Send(Buffer, SocketFlags.None);
             }
@@ -702,6 +721,26 @@ namespace TcpForT6
             {
                 MessageBox.Show(ex.Message);
                 DisableControl();
+            }
+        }
+
+        private async void buttonrichexecute_Click(object sender, EventArgs e)
+        {
+            string[] rowSpels = richTextBoxSpel.Text.Trim().Split('\n');
+            foreach(string spel in rowSpels)
+            {
+                try
+                {
+                    gCMD = $"$Execute,\"{spel}\"\\n";
+                    byte[] Buffer = Encoding.Default.GetBytes(gCMD);
+                    gClient.Send(Buffer, SocketFlags.None);
+                    await Task.Delay(1000);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    DisableControl();
+                }
             }
         }
     }
